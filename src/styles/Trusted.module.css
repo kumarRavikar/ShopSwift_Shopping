@@ -1,0 +1,49 @@
+.trusted {
+  padding: 70px 8%;
+  background: #f8f9fb;
+  text-align: center;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.heading span {
+  color: #ff6a00;
+}
+
+/* Logo Row */
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.logos img {
+  max-height: 50px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.logos img:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 22px;
+  }
+
+  .logos {
+    gap: 24px;
+  }
+}

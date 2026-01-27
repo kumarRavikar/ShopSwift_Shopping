@@ -1,0 +1,107 @@
+.footer {
+  background: #0f172a;
+  color: #cbd5e1;
+  padding-top: 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 8%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.col h4 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.col p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff6a00;
+  margin-bottom: 12px;
+}
+
+/* Subscribe */
+.subscribe {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.subscribe input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.subscribe button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #ff6a00;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.subscribe button:hover {
+  background: #e65c00;
+}
+
+/* Social Icons */
+.socials {
+  display: flex;
+  gap: 14px;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.socials svg {
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socials svg:hover {
+  color: #ff6a00;
+  transform: translateY(-3px);
+}
+
+/* Bottom Bar */
+.bottom {
+  margin-top: 40px;
+  padding: 16px 8%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .subscribe {
+    flex-direction: column;
+  }
+}
