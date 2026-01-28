@@ -19,7 +19,6 @@ export const Home = () => {
     <FeatureProducts/>
     <Services/>
     <Trusted/>
-    <Footer/>
     </>
     )
 }

@@ -1,0 +1,55 @@
+.cartBox {
+  margin-top: 20px;
+}
+
+.colorText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.colorText span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+
+.colors {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px;
+}
+
+.colorBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.colorBtn:hover {
+  opacity: 1;
+}
+
+.active {
+  outline: 2px solid #111;
+  opacity: 1;
+}
+
+.addToCartBtn {
+  padding: 10px 22px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.addToCartBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

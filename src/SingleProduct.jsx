@@ -1,23 +1,30 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { UseProductContext } from './contex/productContext'
-import PageNavigation from './components/PageNavigation'
-import styles from '../src/styles/SingleProduct.module.css'
-
-const API = 'https://fakestoreapi.com/products'
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { UseProductContext } from "./contex/productContext";
+import PageNavigation from "./components/PageNavigation";
+import styles from "../src/styles/SingleProduct.module.css";
+import PriceFormate from "./components/PriceFormate";
+import { TbTruckDelivery, TbReplaceFilled } from "react-icons/tb";
+import { MdOutlineSecurity } from "react-icons/md";
+import MyImages from "./components/MyImages";
+import Stars from "./components/Stars";
+import AddToCart from "./components/AddToCart";
+const API = "https://fakestoreapi.com/products";
 
 export const SingleProduct = () => {
-  const { id } = useParams()
-  const { singleProduct, isSingleLoading, getSingleProduct } = UseProductContext()
+  const { id } = useParams();
+  const { singleProduct, isSingleLoading, getSingleProduct } =
+    UseProductContext();
 
-  const { category, title, description, price, rating, image } = singleProduct
+  const {  title, description, price, rating, stock } =
+    singleProduct;
 
   useEffect(() => {
-    getSingleProduct(`${API}/${id}`)
-  }, [id])
+    getSingleProduct(`${API}/${id}`);
+  }, [id]);
 
   if (isSingleLoading) {
-    return <div className={styles.loader}>Loading product details...</div>
+    return <div className={styles.loader}>Loading product details...</div>;
   }
 
   return (
@@ -25,36 +32,56 @@ export const SingleProduct = () => {
       <PageNavigation title={title} />
 
       <div className={styles.card}>
-        {/* Product Image */}
         <div className={styles.imageSection}>
-          <span className={styles.badge}>{category}</span>
-          <img src={image} alt={title} />
+          {singleProduct.images && <MyImages images={singleProduct.images} />}
         </div>
 
-        {/* Product Info */}
         <div className={styles.content}>
           <h1 className={styles.title}>{title}</h1>
 
-          <p className={styles.description}>{description}</p>
-
           <div className={styles.meta}>
-            <span className={styles.rating}>
-              ⭐ {rating?.rate} / 5
-            </span>
-            <span className={styles.reviews}>
-              ({rating?.count} reviews)
-            </span>
+            <Stars rating={rating}/>
           </div>
 
           <div className={styles.divider} />
 
           <div className={styles.priceRow}>
-            <span className={styles.price}>₹ {price}</span>
-            <button className={styles.button}>Add to Cart</button>
+            <del>
+              MRP: <PriceFormate price={price + 25000} />
+            </del>
+            <span className={styles.price}>
+              Deal of the day: <PriceFormate price={price} />
+            </span>
+            <p
+              className={`${styles.stock} ${
+                stock > 0 ? styles.inStock : styles.outOfStock
+              }`}
+            >
+              Availability:
+              <span>{stock > 0 ? " In stock" : " Out of stock"}</span>
+            </p>
+            <p className={styles.description}>{description}</p>
+            <div className={styles.services}>
+              <div className={styles.serviceItem}>
+                <TbTruckDelivery className={styles.icon} />
+                <p>Free Delivery</p>
+              </div>
+
+              <div className={styles.serviceItem}>
+                <TbReplaceFilled className={styles.icon} />
+                <p>Easy Replacement</p>
+              </div>
+
+              <div className={styles.serviceItem}>
+                <MdOutlineSecurity className={styles.icon} />
+                <p>2 Month Warranty</p>
+              </div>
+            </div>
           </div>
+          <div className={styles.divider} />
+          <AddToCart products={singleProduct}/>
         </div>
       </div>
     </section>
-  )
-}
-
+  );
+};

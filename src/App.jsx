@@ -8,6 +8,7 @@ import { SingleProduct } from "./SingleProduct"
 import { ErrorPage } from "./ErrorPage"
 import Header from "./components/Header"
 import Cart from "./Cart"
+import Footer from "./components/Footer"
 function App() {
  const router = createBrowserRouter([
   {path:"/",element:<Header/>, errorElement:<ErrorPage/>,children:[
@@ -19,8 +20,7 @@ function App() {
   {path:"/cart", element:<Cart/>}
   ]}
  ])
-
-  return <RouterProvider router={router}/>
+  return(<><RouterProvider router={router}/> <Footer/></> )
 }
 
 export default App

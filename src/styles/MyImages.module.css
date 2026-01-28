@@ -1,0 +1,32 @@
+.imageGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mainImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 8px;
+}
+
+.thumbnail img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.thumbnail img:hover {
+  border-color: #3498db;
+  transform: scale(1.05);
+}
