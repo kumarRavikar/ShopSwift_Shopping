@@ -17,7 +17,7 @@ const FeatureProducts = () => {
           {featuredProducts.map((currProduct) => (
             <Product
               key={currProduct.id}
-              product={{ ...currProduct }}
+              { ...currProduct }
             />
           ))}
         </div>

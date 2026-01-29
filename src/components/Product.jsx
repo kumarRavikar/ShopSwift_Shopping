@@ -2,8 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styles from "../styles/Product.module.css"
 import PriceFormate from './PriceFormate';
-const Product = ({product}) => {
-   const {id, title, image, price, category} = product;
+const Product = (currProduct) => {
+   const {id, title, image, price, category} = currProduct;
   return (
    <NavLink to={`/products/${id}`} className={styles.card}>
       <div className={styles.cardInner}>
