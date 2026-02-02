@@ -8,7 +8,7 @@
     grid-template-columns: 200px 1fr;
     gap: 2rem;
     padding: 1.5rem;
-    background: #e6e1e1;
+    background: #f9f8f8;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgb(0,0,0,0.8);
 }
@@ -33,7 +33,7 @@
 }
 .category{
     text-transform: capitalize;
-    color: #777;
+    color: #191313;
     font-size: 0.9rem;
 }
 .title{

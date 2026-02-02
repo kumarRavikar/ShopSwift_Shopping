@@ -11,7 +11,7 @@ export const Products = () => {
         <FilterSection/>
       </aside>
       <section className={styles.productSection}>
-        <div className={styles.sort}>
+        <div>
           <Sort/>
         </div>
         <div className={styles.products}>

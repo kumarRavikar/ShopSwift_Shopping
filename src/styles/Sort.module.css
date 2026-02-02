@@ -1,0 +1,64 @@
+.sort_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+/* buttons wrapper */
+.btn {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn button {
+  border: none;
+  background: #f1f1f1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn button:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* active view */
+.active {
+  background: #000;
+  color: #fff;
+}
+
+/* product count */
+.product_count {
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 600;
+}
+
+/* dropdown */
+.price_dropdown {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.price_dropdown:hover,
+.price_dropdown:focus {
+  border-color: #000;
+}
