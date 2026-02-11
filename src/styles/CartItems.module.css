@@ -1,0 +1,43 @@
+.cartRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.productImg {
+  width: 70px;
+  border-radius: 8px;
+}
+
+.productName {
+  font-weight: 500;
+}
+
+.colorBox {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.removeBtn:hover {
+  transform: scale(1.1);
+}

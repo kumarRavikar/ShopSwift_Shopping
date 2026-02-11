@@ -11,7 +11,7 @@ import reducer from "../reducers/ProductReducers"
    featuredProducts:[],
    isError:false,
    isSingleLoading:false,
-   singleProduct:{}
+   singleProduct:{} 
  }
  const enhanceProduct =(product)=>{
     return{

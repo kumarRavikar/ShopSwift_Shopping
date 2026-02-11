@@ -10,7 +10,7 @@
     padding: 1.5rem;
     background: #f9f8f8;
     border-radius: 14px;
-    box-shadow: 0 8px 20px rgb(0,0,0,0.8);
+    box-shadow: 0 8px 20px rgb(0,0,0,0.2);
 }
 .imageBox{
     overflow: hidden;

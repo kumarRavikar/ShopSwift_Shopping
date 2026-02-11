@@ -3,7 +3,6 @@ import about from "../src/assets/Photo/about.png"
 import HomePage from './components/HomePage'
 import Services from './components/Services'
 import Trusted from './components/Trusted'
-import Footer from "../src/components/Footer"
 export const About = () => {
   const pageDetails = {
     name : "About Our Company",

@@ -8,7 +8,11 @@ import reducer from "../reducers/FilterReducer"
     sorting_value:'lowest',
     filters:{
         text:'',
-        category:'All'
+        category:'All',
+        colors:'All',
+        maxPrice:0,
+        minPrice:0,
+        price:0
     }
  }
 const FilterProductContext = createContext();
@@ -32,13 +36,19 @@ export const FilterContextProvider=({children})=>{
    useEffect(()=>{
     dispatch({type:'LOAD_FILTER_PRODUCTS', payload:products})
    },[products])
+   //to Clearing Filters
+   const clearFilters=()=>{
+    return dispatch({type:'CLEAR_FILTERS'})
+   }
+
+   //to Sorting products
    useEffect(()=>{
     dispatch({type:'UPDATE_FILTER_PRODUCT'})
      dispatch({type:'SORT_PRODUCT'})
    },[state.sorting_value, state.filters])
    
 
-    return <FilterProductContext.Provider value={{...state, setGridview, setListView, sorting,updateFilterValu}}>
+    return <FilterProductContext.Provider value={{...state, setGridview, setListView, sorting,updateFilterValu,clearFilters}}>
         {children}
     </FilterProductContext.Provider>
 }

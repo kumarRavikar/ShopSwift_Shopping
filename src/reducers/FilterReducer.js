@@ -4,10 +4,13 @@ import { useFilterContext } from "../contex/FilterProductContext";
 const FilterReducer = (state, action) => {
   switch (action.type) {
     case "LOAD_FILTER_PRODUCTS":
+      let priceArr = action.payload.map((currEle) => currEle.price);
+      let maxPrice = Math.max(...priceArr);
       return {
         ...state,
         filter_product: [...action.payload],
         all_products: [...action.payload],
+        filters: { ...state.filters, maxPrice, price: maxPrice },
       };
     case "GRID_VIEW":
       return {
@@ -52,32 +55,53 @@ const FilterReducer = (state, action) => {
         filter_product: newSortData,
       };
     }
-    case 'UPDATE_FILTER_VALUE':
-        const {name,value} = action.payload
-        return{
-            ...state,
-            filters:{
-                ...state.filters,[name]:value
-            }
-        }
-    case 'UPDATE_FILTER_PRODUCT':
-        const {all_products} = state;
-        const {text,category} = state.filters;
-        let temFilterProd = [...all_products]
-        if(text){
-        temFilterProd = temFilterProd.filter((currEle)=>{
-            return currEle.title.toLowerCase().includes(text.toLowerCase());
-        })
-        }
-        if(category && category !== 'All'){
-           temFilterProd = temFilterProd.filter((currEle)=>{
-            return currEle.category === category;
-        }) 
-        }
-        return{
-            ...state,
-            filter_product:temFilterProd
-        }    
+    case "UPDATE_FILTER_VALUE":
+      const { name, value } = action.payload;
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [name]: value,
+        },
+      };
+    case "UPDATE_FILTER_PRODUCT":
+      const { all_products } = state;
+      const { text, category, price } = state.filters;
+      let temFilterProd = [...all_products];
+      if (text) {
+        temFilterProd = temFilterProd.filter((currEle) => {
+          return currEle.title.toLowerCase().includes(text.toLowerCase());
+        });
+      }
+      if (category && category !== "All") {
+        temFilterProd = temFilterProd.filter((currEle) => {
+          return currEle.category === category;
+        });
+      }
+      if (price === 0) {
+        temFilterProd = temFilterProd.filter(
+          (currEle) => currEle.price === price,
+        );
+      } else {
+        temFilterProd = temFilterProd.filter(
+          (currEle) => currEle.price <= price,
+        );
+      }
+      return {
+        ...state,
+        filter_product: temFilterProd,
+      };
+    case "CLEAR_FILTERS":
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          text: "",
+          category: "All",
+          colors: "All",
+          price: state.filters.maxPrice,
+        },
+      };
     default:
       return state;
   }

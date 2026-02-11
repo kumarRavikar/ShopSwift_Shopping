@@ -4,7 +4,6 @@ import Sort from './components/Sort'
 import ProductList from './components/ProductList'
 import styles from "./styles/ProductNav.module.css"
 export const Products = () => {
-   
   return (
     <div className={styles.container}>
       <aside className={styles.filter}>

@@ -79,7 +79,7 @@ export const SingleProduct = () => {
             </div>
           </div>
           <div className={styles.divider} />
-          <AddToCart products={singleProduct}/>
+          <AddToCart product={singleProduct}/>
         </div>
       </div>
     </section>
