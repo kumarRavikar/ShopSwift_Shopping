@@ -2,8 +2,10 @@ import React from "react";
 import styles from "../styles/CartItems.module.css";
 import { FaTrash } from "react-icons/fa";
 import PriceFormate from "./PriceFormate";
+import { useAddToCartContext } from "../contex/AddToCartContext";
 
 const CartItems = ({ id, name, image,  price, amount }) => {
+  const {removeProduct} = useAddToCartContext();
   return (
     <div className={styles.cartRow}>
       
@@ -25,7 +27,7 @@ const CartItems = ({ id, name, image,  price, amount }) => {
 
       {/* Remove */}
       <button className={styles.removeBtn}>
-        <FaTrash />
+        <FaTrash onClick={()=>removeProduct(id)}/>
       </button>
 
     </div>

@@ -31,7 +31,7 @@ const Nav = () => {
           <div className={styles.cartWrapper}>
           
               <FiShoppingCart className={styles.cartIcon} />
-            <span className={styles.cartCount}>10</span>
+           
            
           </div>
         </NavLink>
