@@ -1,62 +1,86 @@
-import React from 'react'
-import { useAddToCartContext } from './contex/AddToCartContext'
-import CartItems from './components/CartItems';
-import styles from "./styles/Cart.module.css"
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { useAddToCartContext } from "./contex/AddToCartContext";
+import CartItems from "./components/CartItems";
+import styles from "./styles/Cart.module.css";
+import { NavLink } from "react-router-dom";
+import PriceFormate from "./components/PriceFormate";
+
 const Cart = () => {
-  const {cart,clearCart} = useAddToCartContext();
- if (cart.length === 0) {
+  const { cart, clearCart, total_amount, shipping_fee } = useAddToCartContext();
+  if (cart.length === 0) {
+    return (
+      <div className={styles.emptyCart}>
+        <h2>Your Cart is Empty</h2>
+        <p>Looks like you haven't added anything yet.</p>
+
+        <NavLink to="/products">
+          <button className={styles.shopBtn}>Start Shopping</button>
+        </NavLink>
+      </div>
+    );
+  }
   return (
-    <div className={styles.emptyCart}>
-      <h2>Your Cart is Empty</h2>
-      <p>Looks like you haven't added anything yet.</p>
+    <>
+      <div className={styles.cartContainer}>
+        {/* Header */}
+        <div className={styles.cartHeader}>
+          <p>Item</p>
+          <p>Price</p>
+          <p>Quantity</p>
+          <p>Subtotal</p>
+          <p>Remove</p>
+        </div>
 
-      <NavLink to="/products">
-        <button className={styles.shopBtn}>
-          Start Shopping
-        </button>
-      </NavLink>
-    </div>
-  );
-}
-  return (
-  <div className={styles.cartContainer}>
-    
-    {/* Header */}
-    <div className={styles.cartHeader}>
-      <p>Item</p>
-      <p>Price</p>
-      <p>Quantity</p>
-      <p>Subtotal</p>
-      <p>Remove</p>
+        <hr className={styles.divider} />
+
+        {/* Cart Items */}
+        <div className={styles.cartItems}>
+          {cart.map((currEle) => (
+            <CartItems key={currEle.id} {...currEle} />
+          ))}
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.cartButtons}>
+          <NavLink to="/products">
+            <button className={styles.continueBtn}>Continue Shopping</button>
+          </NavLink>
+
+          <button className={styles.clearBtn} onClick={clearCart}>
+            Clear Cart
+          </button>
+        </div>
+      </div>
+      <div className={styles.summaryWrapper}>
+  <div className={styles.summaryCard}>
+
+    <h3 className={styles.summaryTitle}>Order Summary</h3>
+
+    <div className={styles.summaryRow}>
+      <span>Subtotal</span>
+      <span><PriceFormate price={total_amount} /></span>
     </div>
 
-    <hr className={styles.divider} />
-
-    {/* Cart Items */}
-    <div className={styles.cartItems}>
-      {cart.map((currEle) => (
-        <CartItems key={currEle.id} {...currEle} />
-      ))}
+    <div className={styles.summaryRow}>
+      <span>Shipping Fee</span>
+      <span><PriceFormate price={shipping_fee} /></span>
     </div>
-    <hr className={styles.divider}/>
-     <div className={styles.cartButtons}>
-  <NavLink to="/products">
-    <button className={styles.continueBtn}>
-      Continue Shopping
+
+    <div className={styles.summaryDivider}></div>
+
+    <div className={`${styles.summaryRow} ${styles.totalRow}`}>
+      <span>Grand Total</span>
+      <span><PriceFormate price={total_amount + shipping_fee} /></span>
+    </div>
+
+    <button className={styles.checkoutBtn}>
+      Proceed to Checkout
     </button>
-  </NavLink>
 
-  <button 
-    className={styles.clearBtn}
-    onClick={clearCart}
-  >
-    Clear Cart
-  </button>
-</div>
   </div>
-);
+</div>
 
-}
+    </>
+  );
+};
 
-export default Cart
+export default Cart;

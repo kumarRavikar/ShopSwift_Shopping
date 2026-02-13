@@ -53,6 +53,77 @@ const AddToCartReducer = (state,action) => {
         ...state,
         cart:[]
       }  
+    case 'INCREASE_AMOUNT':
+      const updatedItm = state.cart.map((currEle)=>{
+        if(currEle.id === action.payload){
+          let incValue = currEle.amount + 1;
+          if( incValue <= currEle.max ){
+            incValue = currEle.max
+          }
+          return{
+            ...currEle,
+            amount:incValue
+          }
+        }else{
+          return currEle;
+        }
+  })
+      return{
+         ...state,
+         cart:updatedItm
+      }  
+    case 'DECREASE_AMOUNT':
+      const updateItem = state.cart.map((currEle)=>{
+        if(currEle.id === action.payload){
+          let decValue = currEle.amount - 1;
+          return{
+            ...currEle,
+            amount:decValue
+          }
+          
+        }else{
+          return currEle
+        }
+      })  
+      return{
+        ...state,
+        cart:updateItem
+      }
+    // case 'NUMBER_OF_CART_ITEMS':
+    //     let updateVal = state.cart.reduce((initial,currVal)=>{
+    //       let {amount} = currVal;
+    //       initial += amount;
+    //       return initial
+    //     },0)
+    //     return {
+    //       ...state,
+    //       total_items:updateVal
+    //     }
+    //   case 'CALCULATE_SUBTOTAL':
+    //     let updateValue = state.cart.reduce((initial,currEle)=>{
+    //     let {amount, price} = currEle
+    //     initial += amount * price
+    //     return initial
+    //     },0)  
+    //     return{
+    //       ...state,
+    //       total_amount:Math.floor(updateValue)
+    //     }
+      case 'CALCULATE_TOTAL_ITEM_OR_TOTAL_AMOUNT':
+        let {total_amount,total_items} = state.cart.reduce((accum,currEle)=>{
+           let {amount,price} = currEle;
+           accum.total_items += amount;
+           accum.total_amount += amount * price 
+           return accum
+        },{
+          total_amount : 0,
+          total_items : 0
+        })  
+        return{
+          ...state,
+          total_amount,
+          total_items
+        }
       default:return state  
   }
 }

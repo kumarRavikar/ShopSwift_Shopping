@@ -1,9 +1,10 @@
 .cartRow {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+   display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr 1.3fr 0.6fr;
   align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid #f0f0f0;
+  column-gap: 2rem;
 }
 
 .productInfo {
@@ -11,7 +12,9 @@
   align-items: center;
   gap: 1rem;
 }
-
+.center {
+  text-align: center;
+}
 .productImg {
   width: 70px;
   border-radius: 8px;

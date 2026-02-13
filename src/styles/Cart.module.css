@@ -9,13 +9,14 @@
 
 
 .cartHeader {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+    display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr 1.3fr 0.6fr;
   font-weight: 600;
   font-size: 1rem;
-  padding: 1rem 0;
+  padding:1rem 0;
   text-transform: uppercase;
   color: #444;
+
 }
 
 
@@ -110,5 +111,80 @@
 
 .shopBtn:hover {
   background-color: #333;
+  transform: translateY(-2px);
+}
+/* Wrapper aligns summary to right */
+/* Align summary to right */
+.summaryWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+/* Main Card */
+.summaryCard {
+  width: 350px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: 0.3s ease;
+}
+
+/* Slight hover lift */
+.summaryCard:hover {
+  transform: translateY(-4px);
+}
+
+/* Title */
+.summaryTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+/* Rows */
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Divider */
+.summaryDivider {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 0.5rem 0;
+}
+
+/* Grand Total Styling */
+.totalRow {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Checkout Button */
+.checkoutBtn {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #000, #333);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkoutBtn:hover {
+  background: linear-gradient(135deg, #111, #444);
   transform: translateY(-2px);
 }

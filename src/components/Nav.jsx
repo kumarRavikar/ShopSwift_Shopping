@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom'
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenuMotion,CgClose  } from "react-icons/cg";
 import styles from "../styles/Nav.module.css";
+import { useAddToCartContext } from '../contex/AddToCartContext';
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false);
+  const {total_items} = useAddToCartContext();
   return (
    <>
    <nav className={styles.nav}>
@@ -31,7 +33,7 @@ const Nav = () => {
           <div className={styles.cartWrapper}>
           
               <FiShoppingCart className={styles.cartIcon} />
-           
+            <span className={styles.cartCount}>{total_items}</span>
            
           </div>
         </NavLink>
