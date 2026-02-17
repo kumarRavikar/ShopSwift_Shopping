@@ -4,9 +4,10 @@ import CartItems from "./components/CartItems";
 import styles from "./styles/Cart.module.css";
 import { NavLink } from "react-router-dom";
 import PriceFormate from "./components/PriceFormate";
-
+import { useAuth0 } from "@auth0/auth0-react";
 const Cart = () => {
   const { cart, clearCart, total_amount, shipping_fee } = useAddToCartContext();
+  const { user, isAuthenticated } = useAuth0();
   if (cart.length === 0) {
     return (
       <div className={styles.emptyCart}>
@@ -23,6 +24,17 @@ const Cart = () => {
     <>
       <div className={styles.cartContainer}>
         {/* Header */}
+        {isAuthenticated ? (
+          <div className={styles.userCard}>
+            <img src={user.profile} alt={user.name} className={styles.userImage} />
+            <p className={styles.username}>{user.name}</p>
+          </div>
+        ) : (
+          <div className="guestCard">
+            <p>User has not logged in yet</p>
+          </div>
+        )}
+
         <div className={styles.cartHeader}>
           <p>Item</p>
           <p>Price</p>
@@ -51,34 +63,35 @@ const Cart = () => {
         </div>
       </div>
       <div className={styles.summaryWrapper}>
-  <div className={styles.summaryCard}>
+        <div className={styles.summaryCard}>
+          <h3 className={styles.summaryTitle}>Order Summary</h3>
 
-    <h3 className={styles.summaryTitle}>Order Summary</h3>
+          <div className={styles.summaryRow}>
+            <span>Subtotal</span>
+            <span>
+              <PriceFormate price={total_amount} />
+            </span>
+          </div>
 
-    <div className={styles.summaryRow}>
-      <span>Subtotal</span>
-      <span><PriceFormate price={total_amount} /></span>
-    </div>
+          <div className={styles.summaryRow}>
+            <span>Shipping Fee</span>
+            <span>
+              <PriceFormate price={shipping_fee} />
+            </span>
+          </div>
 
-    <div className={styles.summaryRow}>
-      <span>Shipping Fee</span>
-      <span><PriceFormate price={shipping_fee} /></span>
-    </div>
+          <div className={styles.summaryDivider}></div>
 
-    <div className={styles.summaryDivider}></div>
+          <div className={`${styles.summaryRow} ${styles.totalRow}`}>
+            <span>Grand Total</span>
+            <span>
+              <PriceFormate price={total_amount + shipping_fee} />
+            </span>
+          </div>
 
-    <div className={`${styles.summaryRow} ${styles.totalRow}`}>
-      <span>Grand Total</span>
-      <span><PriceFormate price={total_amount + shipping_fee} /></span>
-    </div>
-
-    <button className={styles.checkoutBtn}>
-      Proceed to Checkout
-    </button>
-
-  </div>
-</div>
-
+          <button className={styles.checkoutBtn}>Proceed to Checkout</button>
+        </div>
+      </div>
     </>
   );
 };

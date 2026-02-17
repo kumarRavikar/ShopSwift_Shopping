@@ -1,6 +1,8 @@
 
 import styles from "../src/styles/Contact.module.css"
+import { useAuth0 } from "@auth0/auth0-react"
 export const Contact = () => {
+  const {user, isAuthenticated } = useAuth0()
   return (
     <section className={styles.contact}>
       <h1 className={styles.heading}>Contact Page</h1>
@@ -17,8 +19,18 @@ export const Contact = () => {
     <div className={styles.formWrapper}>
       <div>
         <form action="https://usebasin.com/f/ff0d83655055" method="POST" className={styles.form}> 
-         <input type="text" placeholder="User Name" name="userName"  autoComplete = 'off' required/>
-          <input type="email" name="email" placeholder="Email" autoComplete="off" required />
+         <input type="text" 
+         placeholder="User Name" 
+         name="userName" 
+          autoComplete = 'off' 
+          value={isAuthenticated? user.name : " "}
+          required/>
+          <input type="email" 
+          name="email" 
+          placeholder="Email"
+          value={isAuthenticated? user.email : " "} 
+          autoComplete="off" 
+          required />
           <textarea name='Message' placeholder='Enter your Message' ></textarea>
           <input type='submit' value='send'/>
         </form>

@@ -4,10 +4,12 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CgMenuMotion,CgClose  } from "react-icons/cg";
 import styles from "../styles/Nav.module.css";
 import { useAddToCartContext } from '../contex/AddToCartContext';
+import { useAuth0 } from '@auth0/auth0-react';
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false);
   const {total_items} = useAddToCartContext();
+  const {user,loginWithRedirect,logout,isAuthenticated} = useAuth0();
   return (
    <>
    <nav className={styles.nav}>
@@ -28,7 +30,15 @@ const Nav = () => {
         <NavLink to="/products" className={styles.link} onClick={closeMenu}>
           Products
         </NavLink>
-
+         {
+          isAuthenticated && <p className={styles.link} >{user.name}</p>
+         }
+        {
+          isAuthenticated?(  <button className={styles.btn} onClick={()=>logout({ returnTo:window.location.origin})}>LogOut</button>):
+          (<button className={styles.btn} onClick={()=>loginWithRedirect()}>LogIn</button>)
+        }
+        
+        
         <NavLink to="/cart" className={styles.link} onClick={closeMenu}>
           <div className={styles.cartWrapper}>
           

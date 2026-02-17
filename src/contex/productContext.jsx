@@ -2,6 +2,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/ProductReducers"
+
  const ProductContext = createContext();
  export const UseProductContext =()=> useContext(ProductContext);
  const API = 'https://fakestoreapi.com/products';
@@ -25,6 +26,7 @@ import reducer from "../reducers/ProductReducers"
  }
 export const ProductContextProvider=({children})=>{
    const [state,dispatch] = useReducer(reducer, initialState);
+  
     const getProducts = async(URL)=>{
       dispatch({type:'SET_LOADING'})
        try {

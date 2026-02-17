@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from "../styles/trusted.module.css"
+import styles from '../styles/trusted.module.css'
 const Trusted = () => {
   return (
-    <section className={styles.trusted}>
+    <section className={styles.trust}>
       <h2 className={styles.heading}>
         Trusted by <span>500+</span> Companies
       </h2>

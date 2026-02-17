@@ -188,3 +188,40 @@
   background: linear-gradient(135deg, #111, #444);
   transform: translateY(-2px);
 }
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f4f6f8;
+  padding: 10px 15px;
+  border-radius: 50px;
+  width: fit-content;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.userCard:hover {
+  transform: translateY(-2px);
+}
+
+.userImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #4f46e5;
+  object-fit: cover;
+}
+
+.userName {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.guestCard {
+  background-color: #ffecec;
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: #d32f2f;
+  font-weight: 500;
+}
