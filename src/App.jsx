@@ -10,6 +10,9 @@ import Header from "./components/Header"
 import Cart from "./Cart"
 import Footer from "./components/Footer"
 function App() {
+  console.log("DOMAIN:", import.meta.env.VITE_AUTH0_DOMAIN);
+console.log("CLIENT:", import.meta.env.VITE_AUTH0_CLIENT_ID);
+
  const router = createBrowserRouter([
   {path:"/",element:<Header/>, errorElement:<ErrorPage/>,children:[
   {index:true , element:<Home/>},

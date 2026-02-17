@@ -9,7 +9,14 @@ const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false);
   const {total_items} = useAddToCartContext();
-  const {user,loginWithRedirect,logout,isAuthenticated} = useAuth0();
+  const {user,loginWithRedirect,logout,isAuthenticated,isLoading} = useAuth0();
+  if (isLoading) {
+  return null;
+}
+console.log("Auth0 State:", {
+  isAuthenticated,
+  user
+});
   return (
    <>
    <nav className={styles.nav}>
@@ -34,7 +41,9 @@ const Nav = () => {
           isAuthenticated && <p className={styles.link} >{user.name}</p>
          }
         {
-          isAuthenticated?(  <button className={styles.btn} onClick={()=>logout({ returnTo:window.location.origin})}>LogOut</button>):
+          isAuthenticated?(  <button className={styles.btn} onClick={()=>logout({  logoutParams: {
+            returnTo: window.location.origin
+          }})}>LogOut</button>):
           (<button className={styles.btn} onClick={()=>loginWithRedirect()}>LogIn</button>)
         }
         
